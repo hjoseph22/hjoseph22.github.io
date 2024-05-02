@@ -28,6 +28,7 @@ body {
 .heart > img {
     width: 50px;
     height: auto;
+    animation: beat 2s infinite ease-in-out; /* Apply the pulse animation continuously */
 }
 
 .message {
@@ -62,22 +63,12 @@ p {
     font-size: 20px; /* Increased font size */
 }
 
-.heart > img:hover {
-    animation-name: beat;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-play-state: running;
-}
-
 @keyframes beat {
-    0% { width: 50px; }
-    25% { width: 58px; }
-    30% { width: 50px; }
-    50% { width: 45px; }
-    60% { width: 50px; }
-    75% { width: 58px; }
-    100% { width: 50px; }
+    0% { transform: scale(1) translate(-50%, -50%); }
+    25% { transform: scale(1.1) translate(-50%, -50%); }
+    50% { transform: scale(1) translate(-50%, -50%); }
+    75% { transform: scale(1.1) translate(-50%, -50%); }
+    100% { transform: scale(1) translate(-50%, -50%); }
 }
 
 @keyframes openmsg {
@@ -89,7 +80,35 @@ p {
     0% { top: 50% }
     100% { top: 85%; transform: translate(-50%, 0); }
 }
+.heart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    text-align: center;  /* Ensures text is centered under the icon */
+}
 
+.heart > img {
+    width: 50px;
+    height: auto;
+    animation: beat 2s infinite ease-in-out; /* Apply the pulse animation continuously */
+}
+
+.heart .click-text {
+    color: #ff6699;  /* Choose a color that fits your design */
+    font-family: 'Dancing Script', cursive; /* Match or choose another complementary font */
+    font-size: 16px;  /* Set size to be visible but not overwhelming */
+    margin-top: 10px;  /* Space between the heart icon and text */
+    opacity: 0.8;  /* Slightly transparent to blend with the design */
+    animation: fadeIn 3s infinite; /* Optionally add a fade in effect */
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
 .openNor, .openHer {
     animation-direction: normal;
     animation-play-state: running;
@@ -113,3 +132,4 @@ p {
     top: 85%;
     transform: translate(-50%, 0);
 }
+
